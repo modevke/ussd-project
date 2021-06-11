@@ -11,7 +11,7 @@ app.use(express.urlencoded({ extended: true }));
 // CONNECT TO REDIS SERVER
 const redisClient = redis.createClient({
     host: "localhost",
-    // password: configs.password,
+    // password: "pass123",
     port: 6379
 })
 
