@@ -1,6 +1,6 @@
 import express from 'express';
 import redis from 'redis';
-import ussdMenuBuilder from './menu-builder/index'
+import ussdMenuBuilder from './menu-builder'
 
 const app: express.Application = express();
 app.disable('etag').disable('x-powered-by');
@@ -27,6 +27,8 @@ redisClient.on('error', (err) => {
 app.post('/ussd', async (req, res) => {
     let menu_res;
     try{
+      // RUN THE MENU BUILDER
+      // PASS REQ BODY AND REDIS CLIENT
         menu_res = await ussdMenuBuilder(req.body, redisClient);
     } catch(e){
         console.log("MENU ERROR");
